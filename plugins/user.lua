@@ -29,4 +29,8 @@ return {
       { "<leader>T", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
     },
   },
+
+  {
+    "Th3Whit3Wolf/space-nvim",
+  },
 }
