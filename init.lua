@@ -18,14 +18,18 @@ return {
     },
     -- Set colorscheme to use
     -- colorscheme = "astrodark",
-    -- colorscheme = "catppuccin",
-    -- colorscheme = "tokyonight",
-    -- colorscheme = "poimandres",
-    -- colorscheme = "github_dark",
-    -- colorscheme = "everforest",
-    colorscheme = "dracula",
+
+    -- colorscheme tokyonight
+    -- There are also colorschemes for the different styles
+    -- colorscheme = "tokyonight-night",
+    colorscheme = "tokyonight-storm",
+    -- colorscheme = "tokyonight-day",
+    -- colorscheme = "tokyonight-moon",
+
+    -- colorscheme = "dracula",
     -- colorscheme = "dracula-soft",
-    -- colorscheme = "iceberg",
+
+    -- colorscheme = "nord",
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {virtual_text = true, underline = true},
     lsp = {
@@ -83,5 +87,13 @@ return {
         --     ["~/%.config/foo/.*"] = "fooscript",
         --   },
         -- }
+
+        -- Fix for the nord colorscheme (@see https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/colorscheme/nord-nvim)
+        vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                client.server_capabilities.semanticTokensProvider = nil
+            end
+        })
     end
 }
